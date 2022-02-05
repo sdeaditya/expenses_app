@@ -45,49 +45,93 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Expenses App"),
       ),
-      body: Column(
-        children: this.transactions.map((tx) {
-          return Container(
-            margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-            child: Card(
-                child: Container(
-              padding: EdgeInsets.fromLTRB(15, 0, 0, 0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+      body: ListView(children: <Widget>[
+        Container(
+          width: double.infinity,
+          child: Card(
+            color: Colors.blue,
+            child: Text(
+              'CHART',
+            ),
+          ),
+        ),
+        Container(
+          margin: EdgeInsets.all(10),
+          child: Card(
+            elevation: 4,
+            child: Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                  child: TextField(
+                    decoration: InputDecoration(labelText: "Title"),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                  child: TextField(
+                    decoration: InputDecoration(labelText: "Amount"),
+                  ),
+                ),
+                Container(
+                  width: double.infinity,
+                  padding: EdgeInsets.all(7),
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: Text("Add transaction"),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+        Container(
+          margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
+          child: Column(
+            children: transactions.map((tx) {
+              return Container(
+                margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                child: Card(
+                    child: Container(
+                  padding: EdgeInsets.fromLTRB(15, 0, 0, 0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        tx.title,
-                        style: TextStyle(
-                            color: Colors.teal,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            tx.title,
+                            style: TextStyle(
+                                color: Colors.teal,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16),
+                          ),
+                          Text(
+                            DateFormat().format(tx.date),
+                            style: TextStyle(color: Colors.blueGrey),
+                          )
+                        ],
                       ),
-                      Text(
-                        DateFormat().format(tx.date),
-                        style: TextStyle(color: Colors.blueGrey),
-                      )
+                      Container(
+                        margin: EdgeInsets.all(10),
+                        child: Text(
+                          "\$ " + tx.amount.toString(),
+                          style: TextStyle(
+                            color: Colors.blue,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        padding: EdgeInsets.all(10),
+                      ),
                     ],
                   ),
-                  Container(
-                    margin: EdgeInsets.all(10),
-                    child: Text(
-                      "\$ " + tx.amount.toString(),
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    padding: EdgeInsets.all(10),
-                  ),
-                ],
-              ),
-            )),
-          );
-        }).toList(),
-      ),
+                )),
+              );
+            }).toList(),
+          ),
+        )
+      ]),
     );
   }
 }
