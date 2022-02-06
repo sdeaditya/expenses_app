@@ -33,23 +33,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Transaction> _transactions = [
-    Transaction(
-        id: '1',
-        title: 'New Shoes',
-        amount: 29.9,
-        date: DateTime(2022, 1, 20, 12, 00)),
-    Transaction(
-        id: '2',
-        title: 'New Bag',
-        amount: 39.9,
-        date: DateTime(2022, 1, 20, 12, 00)),
-    Transaction(
-        id: '3',
-        title: 'New Phone',
-        amount: 299.9,
-        date: DateTime(2022, 1, 20, 12, 00)),
-  ];
+  final List<Transaction> _transactions = [];
 
   void _startNewTx(BuildContext context) {
     showModalBottomSheet(
@@ -85,16 +69,16 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       body: ListView(children: <Widget>[
-        Container(
-          width: double.infinity,
-          padding: EdgeInsets.all(10),
-          child: Card(
-            color: Colors.teal,
-            child: Text(
-              'CHART',
-            ),
-          ),
-        ),
+        // Container(
+        //   width: double.infinity,
+        //   padding: EdgeInsets.all(10),
+        //   child: Card(
+        //     color: Colors.teal,
+        //     child: Text(
+        //       'CHART',
+        //     ),
+        //   ),
+        // ),
         // UserTransactions(),
         TransactionList(_transactions)
       ]),

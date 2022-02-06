@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app/expenses/models/transaction.dart';
@@ -14,48 +14,55 @@ class TransactionList extends StatelessWidget {
     return Container(
       height: 400,
       margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
-      child: ListView.builder(
-        itemBuilder: (context, index) {
-          return Container(
-            margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-            child: Card(
-                child: Container(
-              padding: EdgeInsets.fromLTRB(15, 0, 0, 0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        transactions[index].title,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
-                      ),
-                      Text(
-                        DateFormat().format(transactions[index].date),
-                        style: TextStyle(color: Colors.blueGrey, fontSize: 11),
-                      )
-                    ],
-                  ),
-                  Container(
-                    margin: EdgeInsets.all(10),
-                    child: Text(
-                      "\$ " + transactions[index].amount.toStringAsFixed(2),
-                      style: TextStyle(
-                          color: Theme.of(context).primaryColorDark,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16),
+      child: transactions.isEmpty
+          ? Container(
+              height: 300,
+              child: Image.asset('assets/images/empty.png'),
+            )
+          : ListView.builder(
+              itemBuilder: (context, index) {
+                return Container(
+                  margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                  child: Card(
+                      child: Container(
+                    padding: EdgeInsets.fromLTRB(15, 0, 0, 0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              transactions[index].title,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 16),
+                            ),
+                            Text(
+                              DateFormat().format(transactions[index].date),
+                              style: TextStyle(
+                                  color: Colors.blueGrey, fontSize: 11),
+                            )
+                          ],
+                        ),
+                        Container(
+                          margin: EdgeInsets.all(10),
+                          child: Text(
+                            "\$ " +
+                                transactions[index].amount.toStringAsFixed(2),
+                            style: TextStyle(
+                                color: Theme.of(context).primaryColorDark,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16),
+                          ),
+                          padding: EdgeInsets.all(10),
+                        ),
+                      ],
                     ),
-                    padding: EdgeInsets.all(10),
-                  ),
-                ],
-              ),
-            )),
-          );
-        },
-        itemCount: transactions.length,
-      ),
+                  )),
+                );
+              },
+              itemCount: transactions.length,
+            ),
     );
   }
 }
