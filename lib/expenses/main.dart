@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "Expenses App",
       home: MyHomePage(),
+      theme: ThemeData(primarySwatch: Colors.teal, fontFamily: 'Quicksand'),
       debugShowCheckedModeBanner: false,
     );
   }
@@ -88,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
           width: double.infinity,
           padding: EdgeInsets.all(10),
           child: Card(
-            color: Colors.blue,
+            color: Colors.teal,
             child: Text(
               'CHART',
             ),

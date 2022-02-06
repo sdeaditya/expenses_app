@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_app/expenses/models/transaction.dart';
 import 'package:intl/intl.dart';
@@ -28,13 +30,11 @@ class TransactionList extends StatelessWidget {
                       Text(
                         transactions[index].title,
                         style: TextStyle(
-                            color: Colors.teal,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16),
+                            fontWeight: FontWeight.bold, fontSize: 16),
                       ),
                       Text(
                         DateFormat().format(transactions[index].date),
-                        style: TextStyle(color: Colors.blueGrey),
+                        style: TextStyle(color: Colors.blueGrey, fontSize: 11),
                       )
                     ],
                   ),
@@ -43,9 +43,9 @@ class TransactionList extends StatelessWidget {
                     child: Text(
                       "\$ " + transactions[index].amount.toStringAsFixed(2),
                       style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.bold,
-                      ),
+                          color: Theme.of(context).primaryColorDark,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16),
                     ),
                     padding: EdgeInsets.all(10),
                   ),
