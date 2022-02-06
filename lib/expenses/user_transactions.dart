@@ -51,7 +51,6 @@ class _UserTransactionsState extends State<UserTransactions> {
       child: Column(
         children: [
           NewTransaction(_addNewTransaction),
-          TransactionList(_transactions)
         ],
       ),
     );

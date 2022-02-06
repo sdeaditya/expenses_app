@@ -1,52 +1,76 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
-class NewTransaction extends StatelessWidget {
-  final titleController = TextEditingController();
-  final amountController = TextEditingController();
+class NewTransaction extends StatefulWidget {
   final Function addHandler;
 
   NewTransaction(this.addHandler);
+
+  @override
+  State<NewTransaction> createState() => _NewTransactionState();
+}
+
+class _NewTransactionState extends State<NewTransaction> {
+  final titleController = TextEditingController();
+
+  final amountController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(10),
       child: Card(
-        elevation: 4,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Container(
+                padding: EdgeInsets.all(10),
+                child: Text(
+                  "New Transaction",
+                  style: TextStyle(color: Colors.blueGrey),
+                )),
             Container(
               padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
               child: TextField(
-                decoration: InputDecoration(labelText: "Title"),
+                decoration: InputDecoration(
+                    labelText: "Title",
+                    labelStyle: TextStyle(fontSize: 12, color: Colors.grey)),
                 controller: titleController,
               ),
             ),
             Container(
-              padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+              padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
               child: TextField(
                 keyboardType: TextInputType.number,
-                decoration: InputDecoration(labelText: "Amount"),
+                decoration: InputDecoration(
+                    labelText: "Amount",
+                    labelStyle: TextStyle(fontSize: 12, color: Colors.grey)),
                 controller: amountController,
               ),
             ),
             Container(
               width: double.infinity,
-              padding: EdgeInsets.all(7),
+              padding: EdgeInsets.all(10),
               child: ElevatedButton(
-                onPressed: () {
-                  if (titleController.text != "" &&
-                      amountController.text != "") {
-                    addHandler(titleController.text,
-                        double.parse(amountController.text));
-                  }
-                },
-                child: Text("Add transaction"),
+                onPressed: onSubmit,
+                child: Text("Add"),
               ),
             )
           ],
         ),
       ),
     );
+  }
+
+  onSubmit() {
+    if (titleController.text != "" && amountController.text != "") {
+      final title = titleController.text;
+      final amount = double.parse(amountController.text);
+      if (title.isNotEmpty && amount >= 0) {
+        widget.addHandler(title, amount);
+        Navigator.of(context).pop();
+      }
+    }
   }
 }
