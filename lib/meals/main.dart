@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/meals/bottom_tabbar.dart';
 import 'package:flutter_app/meals/category_meals_screen.dart';
 import 'package:flutter_app/meals/tabBar.dart';
 
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'DeliMeals',
       theme: ThemeData(primarySwatch: Colors.teal, fontFamily: 'Quicksand'),
       routes: {
-        '/': (context) => TabBarScreen(),
+        '/': (context) => BottomTabBar(),
         MealsScreen.routeName: (context) => MealsScreen(),
       },
       onGenerateRoute: (settings) {
