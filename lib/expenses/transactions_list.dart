@@ -16,7 +16,6 @@ class TransactionList extends StatelessWidget {
       margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
       child: transactions.isEmpty
           ? Container(
-              height: 300,
               child: Image.asset('assets/images/empty.png'),
             )
           : ListView.builder(
